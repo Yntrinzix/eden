@@ -1,16 +1,25 @@
+header
+    margin-bottom: 20px
+
 .headerContent
+    +myFlex
+    flex-wrap: nowrap
+    align-items: center
     width: 50%
     margin: 0 auto
     color: #fff
-    display: grid
-    grid-template-columns: 1fr 4fr
-    align-items: center
 
-
+.icon
+    width: 20%
+.search
+    width: 80%
 .formSearch
-    display: grid
-    grid-template-columns: 8fr 1fr
+    +myFlex
+    flex-wrap: nowrap
+    align-items: center
+    width: 100%
     input
+        width: 100%
         background: none
         border: 0
         padding-left: 5px
@@ -21,6 +30,7 @@
         height: 4.4vh
         outline: none
     button
+        width: 10%
         background-color: rgba(0,0,0,0)
         border: none
         color: white

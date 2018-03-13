@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 import './css/styles.css';
 import axios from 'axios';
+import {BrowserRouter, Route, IndexRoute ,hashHistory,Link} from 'react-router-dom';
+import Header from './contents/0-header';
+import SongLister from './contents/1-songLister'
 
 class App extends Component {
 
 constructor(){
     super();
+    
     this.state = {
       userApi: 'http://localhost:3001/api',
       songs: []
       
     }
+    this.getSongs()
   }
 
 getSongs = async () => {
@@ -18,48 +23,53 @@ getSongs = async () => {
   this.setState({
     songs: songs.data.songs
   })
+  
 }
 
+showVideo = (id) => {
+  const el = document.querySelector(`#v${id}`);
+  if (el.className == 'videoWrapper-active'){ 
+    el.classList.add('videoWrapper-inactive');
+    el.classList.remove('videoWrapper-active');
+  }else{
+    el.classList.remove('videoWrapper-inactive');
+    el.classList.add('videoWrapper-active');
+  }
+  
+}
+
+
+toggleShortList=(index, res) => {
+  let songCopy =[...this.state.songs];
+  songCopy[index] = res.data;
+  this.setState({
+    songs: songCopy
+  })
+}
+
+
   render() {
-    this.getSongs()
-    var divStyle = {pointerEvents: 'none', display: 'block', width: '100%', height: '100%'}
+    
+    
     return (
-      <div className="App">
-        <header className="App-header">
-          <div className='headerContent'>
-            <div className='icon'><img  src={require('./assets/eden.jpg')} /></div>
-            <div className='search'>
-              <form className='formSearch'>
-                <input type='text' placeholder='search'/>
-                <button>
-                  <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" className="style-scope yt-icon" style={divStyle}><g className="style-scope yt-icon">
-                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" className="style-scope yt-icon"></path>
-                  </g></svg>
+        <div className="App">
+          <Header/>
 
-                </button>
-              </form>
-            </div>
+          <div className='content'>
+          <div className='songLists'>
+            <h3>Song Lists</h3>
+            <SongLister 
+              toggle={this.toggleShortList} 
+              userApi={this.state.userApi} 
+              songs={this.state.songs} 
+              onClick={this.showVideo}
+            />
           </div>
-        </header>
-
-        <div className='content'>
-          {this.state.songs.map((song)=>{
-         return (
-          <div className='song' key={song._id} id={song._id}>
-
-            <div  className='title' >
-              {song.title}
-            </div>
-            <div className='artist'>
-              {song.artist}
-            </div>
-
-
+          
+            
           </div>
-         );
-       })}
         </div>
-      </div>
+      
     );
   }
 }

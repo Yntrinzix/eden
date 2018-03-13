@@ -1,21 +1,87 @@
 .content
     color: #fff
-    width: 30%
+    width: 50%
     margin: 0 auto
     background: #2e2e2e
-    margin-top: 30px    
-    border-radius: 25px 
+    border-radius: 5px 
     padding: 10px
+
         
+
+
+.songTop
+    display: flex
+    &:hover
+
+        .songLeft
+            width: 80%
+        .shortLister
+            width: 20%
+            color: #a2ff00
+            font-size: 20px
+            span
+                color: #a2ff00
+                display: inline
+                opacity: 1
+                font-size: 10px
 .song
     padding: 10px
-    border-radius: 10px 
     background: #222
-    margin: 10px
+    margin: 0px 10px 10px 10px
+    transition: all .5s ease
+    width: 95%
+    &:hover
+        background: #000
+        border-radius: 10px
+        cursor: pointer
+        .title
+            color: #a2ff00
+.songLeft
+    width: 90%
+    transition: all .5s ease
 
+.shortLister
+    text-align: right
+    width: 10%
+    transition: all .5s ease
+    font-size: 13px
+
+    span
+        transition: all .5s ease
+        white-space: nowrap
+        display: hidden
+        opacity: 0
+        font-size: 0px
 .title
     color: #00aeff
-    font-size: 14px
+    font-size: 18px
+    pointer-events: none
 
 .artist
-    font-size: 9px
+    font-size: 12px
+    pointer-events: none
+
+
+.videoWrapper 
+    &-inactive
+        position: relative
+        height: 0px
+        iframe 
+            position: absolute
+            top: 0
+            left: 0
+            width: 100%
+            height: 0%
+    &-active
+        position: relative
+        padding-bottom: 56.25%
+        padding-top: 25px
+        height: 0px
+        iframe 
+            position: absolute
+            top: 0
+            left: 0
+            width: 100%
+            height: 100%
+    
+        
