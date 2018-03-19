@@ -1,9 +1,9 @@
 header
-    background-color: #111
+    background-color: rgba(0,0,0,.8)
     width: 100%
 
 img
-    max-width: 100px
+    max-width: 100%
     height: auto
 
 *
@@ -12,3 +12,23 @@ img
 
 body
     background-color: #222
+
+canvas
+    opacity: .1
+    position: fixed
+    top: 0
+    left: 0
+    z-index: -1
+    width: 100%
+
+.parent
+    height: 100%
+    width: 100%
+    overflow: hidden
+    .contentP
+        width: 100%
+        height: 100%
+        overflow-y: scroll
+        padding-right: 17px
+
++scrollbars(2px, #00aeff, rgba(0,0,0,0))

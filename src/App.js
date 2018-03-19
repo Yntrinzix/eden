@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import './css/styles.css';
 import axios from 'axios';
-import {BrowserRouter, Route, IndexRoute ,hashHistory,Link} from 'react-router-dom';
+import {BrowserRouter, Route} from 'react-router-dom';
+import SongRender from './contents/2-songRender';
+import ShortListRenderer from './contents/3-shortListRenderer';
 import Header from './contents/0-header';
-import SongLister from './contents/1-songLister'
+import Add from './contents/formAdd';
+import wave from './contents/animations/wave';
+import data from './contents/api.json';
 
 class App extends Component {
 
@@ -11,8 +15,9 @@ constructor(){
     super();
     
     this.state = {
-      userApi: 'http://localhost:3001/api',
-      songs: []
+      userApi: data.api,
+      songs: [],
+      path: '/'
       
     }
     this.getSongs()
@@ -26,50 +31,40 @@ getSongs = async () => {
   
 }
 
-showVideo = (id) => {
-  const el = document.querySelector(`#v${id}`);
-  if (el.className == 'videoWrapper-active'){ 
-    el.classList.add('videoWrapper-inactive');
-    el.classList.remove('videoWrapper-active');
-  }else{
-    el.classList.remove('videoWrapper-inactive');
-    el.classList.add('videoWrapper-active');
-  }
-  
+pRender = () => {
+
 }
+//Content Links///
 
 
-toggleShortList=(index, res) => {
-  let songCopy =[...this.state.songs];
-  songCopy[index] = res.data;
-  this.setState({
-    songs: songCopy
-  })
-}
 
+pathSongList = () => this.setState({path: SongRender})
+pathShortList = () => this.setState({path: ShortListRenderer})
+
+//////////////////
 
   render() {
     
     
     return (
-        <div className="App">
-          <Header/>
-
-          <div className='content'>
-          <div className='songLists'>
-            <h3>Song Lists</h3>
-            <SongLister 
-              toggle={this.toggleShortList} 
-              userApi={this.state.userApi} 
-              songs={this.state.songs} 
-              onClick={this.showVideo}
-            />
-          </div>
-          
+      <div className='parent'>
+        <div className='contentP'>
+          <BrowserRouter>
+            <div className="App">
+                
+                <Header api={this.state.userApi}/>
+                
+                <Route path='/' exact component={SongRender} />
+                <Route path='/song-list' component={SongRender} />
+                <Route path='/search' component={SongRender} />
+                <Route path='/short-list' component={ShortListRenderer} />
+                <Route path='/addNew' component={Add} />
+                <canvas id="canvas"/>
+            </div>
             
-          </div>
+          </BrowserRouter>
         </div>
-      
+      </div>
     );
   }
 }

@@ -1,5 +1,8 @@
 header
-    margin-bottom: 20px
+    position: fixed
+    z-index: 9
+    top: 0
+    left: 0
 
 .headerContent
     +myFlex
@@ -9,40 +12,78 @@ header
     margin: 0 auto
     color: #fff
 
-.icon
-    width: 20%
-.search
-    width: 80%
-.formSearch
+.headerLinks
     +myFlex
     flex-wrap: nowrap
-    align-items: center
-    width: 100%
-    input
-        width: 100%
-        background: none
-        border: 0
-        padding-left: 5px
-        outline: 1
-        color: #fff
-        background-color: #222
-        font-size: 20px
-        height: 4.4vh
-        outline: none
-    button
-        width: 10%
-        background-color: rgba(0,0,0,0)
-        border: none
-        color: white
-        padding: 6px
-        text-align: center
+    width: 50%
+    margin: 0 auto
+    padding-bottom: 10px
+
+    div
         text-decoration: none
-        height: 5vh
-        outline: none
+        color: #fff
         cursor: pointer
+        margin: 10px 10px 10px 10px
+        transition: all .1s ease
+        font-size: 12px
         &:hover
+            color: #a2ff00
+            border-bottom: 1px solid #a2ff00
+            margin-bottom: 6px
+            
+
+.active
+    color: #a2ff00
+    border-bottom: 1px solid #a2ff00
+    margin-bottom: 6px
+    padding-bottom: 3px
+
+.icon
+    width: 15%
+.search
+    width: 85%
+    form
+        +myFlex
+        flex-wrap: nowrap
+        align-items: center
+        width: 100%
+        input
+            transition: all .5s ease  
+            width: 100%
+            background: none
+            border: 0
+            padding-left: 5px
+            outline: 1
+            color: #fff
+            background-color: #222
+            font-size: 20px
+            height: 4.4vh
+            outline: none
+
+            border-radius: 5px
+            border: 0px solid #a2ff00
+            &:focus
+                border-radius: 10px
+                border: 1px solid #00aeff
+            &:hover
+                border-radius: 10px
+                border: 1px solid #a2ff00
+        button
+            width: 10%
+            background-color: rgba(0,0,0,0)
+            border: none
+            color: white
+            padding: 6px
+            text-align: center
+            text-decoration: none
+            height: 5vh
+            outline: none
+            cursor: pointer
+            
+            &:hover
+                svg
+                    fill: #00aeff
             svg
-                fill: #00aeff
-        svg
-            fill: #fff
+                transition: all 1s ease
+                fill: #fff
             

@@ -6,7 +6,7 @@ const songSchema = new mongoose.Schema({
   pdf: String,
   artist: String,
   category: String,
-  checked: Number,
+  checked: { type: Number, default: 0 },
   created: { type: Date, default: Date.now }
 });
 

@@ -12,9 +12,24 @@ router.get('/songs', (req, res) => {
     err ? console.log('error '+err) : res.json({songs})});
 });
 
+// Searching for songs
+router.get('/search/:query',(req,res) => {
+        const regex = new RegExp(escapeRegex(req.params.query), 'gi');
+        Songs.find({$or:[{title: regex}, {artist: regex}]}, (err,result)=>{
+            if(err){ console.log(err)}
+            else{ res.json(result)}
+        })
+});
+
+//short listed songs
+router.get('/shortList', (req, res) => {
+  Songs.find({'checked': 1}, (err, songs) => {
+    err ? console.log('error '+err) : res.json({songs})});
+});
+
 //Create new song to DB
 router.post('/song',(req, res) => {
-  const { title, embed, pdf, artist, category, checked } = req.body,
+  const { title, embed, pdf, artist, category } = req.body,
     success = {message:'Success'},
     duplicate = {message: 'Duplicate'};
 
@@ -23,8 +38,10 @@ router.post('/song',(req, res) => {
         'artist': { $regex: new RegExp("^" + artist.toLowerCase(), "i")}
     }).exec((err, resp)=>
         {
+                console.log('b4Error')
             if(resp === null){
-                Songs.create({ title, embed, pdf, artist, category, checked }, (err) => res.json(res))
+                const newembed = embed.split('=');
+                Songs.create({ title, embed:newembed[1], pdf, artist, category }, (err) => res.json(success))
             }else if(resp !=null){
                 console.log('tae '+ resp)
                 res.json(duplicate)
@@ -53,5 +70,7 @@ router.put('/song-shortlist/:id/:checked',(req, res) => {
     (err, newSongList) => res.json(newSongList)
   );
 })
+
+escapeRegex = (query) => query.replace(/[-[\]{}()*+?.,\\^$|#\s]/g,"\\$&");
 
 module.exports = router;
