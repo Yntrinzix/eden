@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import data from './api.json';
 class Add extends Component {
   constructor(){
       super();
@@ -14,7 +14,7 @@ class Add extends Component {
           },
           message: '',
           messageClass: '',
-          userApi: 'http://localhost:3001/api'
+          userApi: 'data.api'
           
     }
   }
