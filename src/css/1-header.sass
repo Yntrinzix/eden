@@ -11,14 +11,22 @@ header
     width: 50%
     margin: 0 auto
     color: #fff
-
+    +lg 
+        width: 70%
+    +sm 
+        width: 100%
+        display: inline-block
+        padding: 5px
 .headerLinks
     +myFlex
     flex-wrap: nowrap
     width: 50%
     margin: 0 auto
     padding-bottom: 10px
-
+    +sm 
+        margin: 0
+    +lg    
+        width: 70%
     div
         text-decoration: none
         color: #fff
@@ -39,17 +47,22 @@ header
     padding-bottom: 3px
 
 .icon
-    width: 15%
+    width: 10%
+    +sm 
+        width: 73px
 .search
     width: 85%
+    +sm 
+        width: 100%
     form
         +myFlex
         flex-wrap: nowrap
         align-items: center
-        width: 100%
+        width: 96%
+        margin: 0 auto
         input
             transition: all .5s ease  
-            width: 100%
+            width: 90%
             background: none
             border: 0
             padding-left: 5px
@@ -59,9 +72,13 @@ header
             font-size: 20px
             height: 4.4vh
             outline: none
-
             border-radius: 5px
             border: 0px solid #a2ff00
+            +sm 
+                font-size: 16px
+                height: 3vh
+                width: 92%
+                padding: 6px
             &:focus
                 border-radius: 10px
                 border: 1px solid #00aeff
@@ -79,7 +96,9 @@ header
             height: 5vh
             outline: none
             cursor: pointer
-            
+            +sm 
+                width: 8%
+                padding: 0
             &:hover
                 svg
                     fill: #00aeff

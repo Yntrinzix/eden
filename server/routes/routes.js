@@ -61,6 +61,10 @@ router.post('/song-search',(req, res) => {
     })
 })
 
+router.get('/juma',(req, res) => {
+    res.send('pogee ni jummaaahhh!!!')
+})
+
 //Shortlisting Songs
 router.put('/song-shortlist/:id/:checked',(req, res) => {
     

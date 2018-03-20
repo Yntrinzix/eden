@@ -1,6 +1,9 @@
 .wrapper
     margin-top: 10%
-    
+    +lg 
+        margin-top: 17%
+    +sm 
+        margin-top: 158px
 .content
     color: #fff
     width: 50%
@@ -8,8 +11,10 @@
     background: rgba(20,20,20,.3)
     border-radius: 5px 
     padding: 5px
-    
-        
+    +lg 
+        width: 70%
+    +sm
+        width: 98%
 .songLists
     h3
         font-size: 12px
@@ -21,10 +26,14 @@
 
         .songLeft
             width: 89%
+            +sm 
+                width: 81%
         .shortLister
-            width: 11%
+            width: 10%
             color: #a2ff00
             font-size: 13px
+            +sm 
+                width: 19%
         .shortlistIcon   
             fill: #00aeff 
             
@@ -32,8 +41,11 @@
     
     background: #222
     margin: 0px 1px 1px 1px
-    transition: all .5s ease
+    transition: all .2s ease
     
+    +sm 
+        background: rgba(50, 50, 50, .4)
+        
     &-shortlist
         border: 1px solid #00aeff
     &:hover
@@ -43,6 +55,8 @@
         .title
             color: #a2ff00
             font-size: 18px
+            +sm 
+                font-size: 16px
         .artist
             font-size: 9px
 .svgIcons
@@ -63,12 +77,16 @@
 .songLeft
     width: 90%
     transition: all .5s ease
+    +sm 
+        width: 80%
 
 .shortLister
     text-align: right
     width: 10%
     transition: all .1s ease
     font-size: 20px
+    +sm 
+        width: 20%
     +myFlex
     span
         transition: all .2s ease

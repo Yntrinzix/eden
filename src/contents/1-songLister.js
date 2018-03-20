@@ -78,7 +78,7 @@ class SongLister extends Component {
         if(contents.length === 0){
             if(this.state.stat=='Loading'){
                 return(
-                    <div class="loader">
+                    <div className="loader">
                         <svg>
                             <defs>
                             <filter id="goo">
